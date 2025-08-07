@@ -78,4 +78,5 @@ with st.sidebar.expander("P/S (Price to Sales)"):
     ps_optimista = st.number_input("P/S Optimista", min_value=0.1, value=9.0) if ingresos_por_accion > 0 else 0
 
 with st.sidebar.expander("P/B (Price to Book)"):
-    valor_contable = st.number_input("Valor Contable por Acción", min_value=_
+    valor_contable = st.number_input("Valor Contable por Acción", min_value=0.0, value=4.0)
+
