@@ -78,5 +78,79 @@ with st.sidebar.expander("P/S (Price to Sales)"):
     ps_optimista = st.number_input("P/S Optimista", min_value=0.1, value=9.0) if ingresos_por_accion > 0 else 0
 
 with st.sidebar.expander("P/B (Price to Book)"):
-    valor_contable = st.number_input("Valor Contable por Acción", min_value=0.0, value=4.0)
+    valor_contable_por_accion = st.number_input("Valor Contable por Acción", min_value=0.0, value=4.0, step=0.1)
+    pb_pesimista = st.number_input("P/B Pesimista", min_value=0.1, value=20.0) if valor_contable_por_accion > 0 else 0
+    pb_base = st.number_input("P/B Base", min_value=0.1, value=35.0) if valor_contable_por_accion > 0 else 0
+    pb_optimista = st.number_input("P/B Optimista", min_value=0.1, value=45.0) if valor_contable_por_accion > 0 else 0
 
+st.sidebar.subheader("Parámetros Adicionales")
+dividendo_anual = st.sidebar.number_input("Dividendo Anual por Acción ($)", min_value=0.0, value=0.96, step=0.01)
+margen_seguridad = st.sidebar.slider("Margen de Seguridad Deseado (%)", 0, 50, 15)
+
+# --- BOTÓN en área principal ---
+if st.button("📊 Analizar Acción"):
+    datos_entrada = {
+        'ticker': ticker,
+        'precio_actual': precio_actual,
+        'eps_estimado': eps_estimado,
+        'pe_pesimista': pe_pesimista if eps_estimado > 0 else 0,
+        'pe_base': pe_base if eps_estimado > 0 else 0,
+        'pe_optimista': pe_optimista if eps_estimado > 0 else 0,
+        'ingresos_por_accion': ingresos_por_accion,
+        'ps_pesimista': ps_pesimista if ingresos_por_accion > 0 else 0,
+        'ps_base': ps_base if ingresos_por_accion > 0 else 0,
+        'ps_optimista': ps_optimista if ingresos_por_accion > 0 else 0,
+        'valor_contable_por_accion': valor_contable_por_accion,
+        'pb_pesimista': pb_pesimista if valor_contable_por_accion > 0 else 0,
+        'pb_base': pb_base if valor_contable_por_accion > 0 else 0,
+        'pb_optimista': pb_optimista if valor_contable_por_accion > 0 else 0,
+        'dividendo_anual': dividendo_anual,
+        'margen_seguridad': margen_seguridad
+    }
+
+    resultados = calcular_valoracion(datos_entrada)
+    
+    st.header(f"Resultados del Análisis para {ticker}")
+
+    # Mostrar métricas clave
+    adicionales = resultados['calculos'].get('adicionales', {})
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric(label="Precio Actual", value=f"${precio_actual:,.2f}")
+
+    with col2:
+        div_yield = adicionales.get('rendimiento_dividendo', 0)
+        st.metric(label="Rendimiento por Dividendo", value=f"{div_yield:.2f}%")
+
+    with col3:
+        rr_ratio = adicionales.get('riesgo_beneficio')
+        if rr_ratio:
+            st.metric(label="Ratio Riesgo/Beneficio (P/E)", value=f"{rr_ratio:.2f}",
+                      help="Calculado como Potencial Base / Riesgo Pesimista. Un valor > 1.5 es bueno.")
+
+    if margen_seguridad > 0 and 'objetivo_con_margen' in adicionales:
+        st.success(f"**Precio de Compra con {margen_seguridad}% de Margen:** ${adicionales['objetivo_con_margen']:,.2f}")
+
+    # Mostrar tablas de resultados
+    for model_key, model_name in [('pe', 'P/E'), ('ps', 'P/S'), ('pb', 'P/B')]:
+        if model_key in resultados['calculos']:
+            st.subheader(f"Análisis por Múltiplo {model_name}")
+            calcs = resultados['calculos'][model_key]
+
+            data_dict = {
+                "Escenario": ["Pesimista", "Base", "Optimista"],
+                "Precio Objetivo ($)": [calcs['objetivo_pesimista'], calcs['objetivo_base'], calcs['objetivo_optimista']],
+                "Potencial (%)": [calcs['upside_pesimista'], calcs['upside_base'], calcs['upside_optimista']]
+            }
+            
+            df = pd.DataFrame(data_dict)
+            # Color condicional simple en tabla
+            def color_potential(val):
+                color = 'green' if val >= 0 else 'red'
+                return f'color: {color}; font-weight: bold;'
+            
+            st.dataframe(df.style.applymap(color_potential, subset=['Potencial (%)']), use_container_width=True)
+
+else:
+    st.info("📌 Ajusta los parámetros en la barra lateral y presiona el botón para analizar.")
