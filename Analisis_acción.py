@@ -27,96 +27,135 @@ st.markdown(
     <style>
     /* Estilos generales para el contenedor principal de la aplicación */
     .reportview-container {
-        background: #1a1a2e; /* Color de fondo principal: un azul oscuro profundo. */
-        color: #e0e0e0; /* Color del texto general: un gris claro para alto contraste. */
+        background: #0A0A1A; /* Fondo principal más oscuro para un look más "terminal" */
+        color: #F8F8F8; /* Texto general en blanco puro para alta legibilidad */
     }
     /* Estilos para la barra lateral de Streamlit */
     .sidebar .sidebar-content {
-        background: #16213e; /* Fondo de la barra lateral: ligeramente diferente al principal para distinción. */
-        color: #e0e0e0; /* Color del texto en la barra lateral. */
+        background: #1A1A3A; /* Fondo de la barra lateral ligeramente más claro que el principal */
+        color: #F8F8F8; /* Texto en la barra lateral */
     }
     /* Estilos para todos los títulos (h1 a h6) */
     h1, h2, h3, h4, h5, h6 {
-        color: #e94560; /* Color de acento para títulos: un rojo vibrante para destacar. */
+        color: #00FFC0; /* Color de acento vibrante (verde cian) para un toque futurista */
     }
     /* Estilos para los campos de entrada de texto (st.text_input, st.number_input) */
     .stTextInput>div>div>input, .stNumberInput>div>div>input {
-        background-color: #0f3460; /* Fondo de los inputs: un azul oscuro. */
-        color: #e0e0e0; /* Color del texto dentro de los inputs. */
-        border: 1px solid #533483; /* Borde de inputs: un morado sutil. */
-        border-radius: 0.5rem; /* Bordes redondeados para los inputs. */
-        padding: 0.75rem; /* Espaciado interno. */
+        background-color: #2A2A4A; /* Fondo de los inputs: azul oscuro */
+        color: #F8F8F8; /* Color del texto dentro de los inputs */
+        border: 1px solid #00FFC0; /* Borde de inputs: color de acento */
+        border-radius: 0.5rem; /* Bordes redondeados para los inputs */
+        padding: 0.75rem; /* Espaciado interno */
+        box-shadow: 0 2px 5px rgba(0, 255, 192, 0.2); /* Sombra sutil con color de acento */
     }
     /* Estilos para los selectores (st.selectbox) */
     .stSelectbox>div>div {
-        background-color: #0f3460; /* Fondo del selector. */
-        color: #e0e0e0; /* Color del texto del selector. */
-        border: 1px solid #533483; /* Borde del selector. */
-        border-radius: 0.5rem; /* Bordes redondeados. */
-        padding: 0.75rem; /* Espaciado interno. */
+        background-color: #2A2A4A; /* Fondo del selector */
+        color: #F8F8F8; /* Color del texto del selector */
+        border: 1px solid #00FFC0; /* Borde del selector */
+        border-radius: 0.5rem; /* Bordes redondeados */
+        padding: 0.75rem; /* Espaciado interno */
+        box-shadow: 0 2px 5px rgba(0, 255, 192, 0.2); /* Sombra sutil */
     }
     /* Estilos para los sliders (st.slider) */
     .stSlider>div>div>div>div {
-        background-color: #e94560; /* Color de la barra del slider. */
+        background-color: #00FFC0; /* Color de la barra del slider: acento */
     }
     /* Estilos para los botones (st.button) */
     .stButton>button {
-        background-color: #e94560; /* Fondo de los botones: el color de acento rojo. */
-        color: white; /* Color del texto del botón. */
-        border-radius: 0.75rem; /* Bordes redondeados. */
-        padding: 0.75rem 1.5rem; /* Espaciado interno. */
-        transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves para hover. */
+        background-color: #00FFC0; /* Fondo de los botones: color de acento */
+        color: #0A0A1A; /* Texto oscuro sobre el acento para contraste */
+        border-radius: 0.75rem; /* Bordes redondeados */
+        padding: 0.75rem 1.5rem; /* Espaciado interno */
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transiciones suaves para hover */
+        box-shadow: 0 4px 10px rgba(0, 255, 192, 0.4); /* Sombra más pronunciada para botones */
+        font-weight: bold; /* Texto en negrita para botones */
     }
     /* Estilos al pasar el ratón sobre los botones */
     .stButton>button:hover {
-        background-color: #b82e4a; /* Tono más oscuro al pasar el ratón. */
-        transform: scale(1.02); /* Ligero aumento de tamaño para efecto interactivo. */
+        background-color: #00E0A0; /* Tono ligeramente más oscuro al pasar el ratón */
+        transform: scale(1.03); /* Ligero aumento de tamaño para efecto interactivo */
+        box-shadow: 0 6px 15px rgba(0, 255, 192, 0.6); /* Sombra más intensa al pasar el ratón */
     }
     /* Estilos para los expanders (st.expander) */
     .stExpander {
-        background-color: #16213e; /* Fondo del expander. */
-        border-radius: 1rem; /* Bordes más redondeados. */
-        padding: 1rem; /* Espaciado interno. */
-        margin-bottom: 1rem; /* Margen inferior para separar expanders. */
-        border: 1px solid #0f3460; /* Borde sutil. */
+        background-color: #1A1A3A; /* Fondo del expander */
+        border-radius: 1rem; /* Bordes más redondeados */
+        padding: 1rem; /* Espaciado interno */
+        margin-bottom: 1rem; /* Margen inferior para separar expanders */
+        border: 1px solid #00FFC0; /* Borde con color de acento */
+        box-shadow: 0 5px 15px rgba(0, 255, 192, 0.2); /* Sombra para expanders */
     }
     /* Estilos para el texto del título del expander */
     .stExpander div[role="button"] p {
-        color: #e94560 !important; /* Color de acento para el título del expander. */
-        font-weight: bold; /* Texto en negrita. */
+        color: #00FFC0 !important; /* Color de acento para el título del expander */
+        font-weight: bold; /* Texto en negrita */
+        font-size: 1.2rem; /* Tamaño de fuente ligeramente mayor */
     }
     /* Estilos para las alertas (st.info, st.warning, st.error, st.success) */
     .stAlert {
-        border-radius: 0.75rem; /* Bordes redondeados para las alertas. */
+        border-radius: 0.75rem; /* Bordes redondeados para las alertas */
+        color: #0A0A1A !important; /* Texto oscuro para contraste en alertas */
+        font-weight: bold; /* Texto en negrita */
+    }
+    .stAlert.st-ce { /* st.info */
+        background-color: #00FFC0 !important; /* Fondo de info: acento */
+        border-left: 8px solid #00E0A0 !important; /* Borde izquierdo más grueso */
+    }
+    .stAlert.st-cd { /* st.warning */
+        background-color: #FFD700 !important; /* Fondo de warning: dorado */
+        border-left: 8px solid #FFA500 !important; /* Borde izquierdo naranja */
+    }
+    .stAlert.st-cc { /* st.error */
+        background-color: #FF6347 !important; /* Fondo de error: rojo tomate */
+        border-left: 8px solid #FF4500 !important; /* Borde izquierdo rojo oscuro */
+    }
+    .stAlert.st-cb { /* st.success */
+        background-color: #32CD32 !important; /* Fondo de success: verde lima */
+        border-left: 8px solid #228B22 !important; /* Borde izquierdo verde bosque */
     }
     /* Estilos para el texto de las pestañas (st.tabs) */
     .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
-        font-size: 1.1rem; /* Tamaño de fuente para el texto de la pestaña. */
-        color: #e0e0e0; /* Color del texto de la pestaña. */
+        font-size: 1.1rem; /* Tamaño de fuente para el texto de la pestaña */
+        color: #F8F8F8; /* Color del texto de la pestaña */
     }
     /* Estilos para la pestaña seleccionada */
-    .stTabs [data-baseweb="tab-list"] button.st-cq { /* Selector específico para la pestaña activa. */
-        background-color: #e94560; /* Fondo de la pestaña activa: color de acento. */
-        border-radius: 0.75rem; /* Bordes redondeados. */
-        color: white; /* Color del texto. */
+    .stTabs [data-baseweb="tab-list"] button.st-cq { /* Selector específico para la pestaña activa */
+        background-color: #00FFC0; /* Fondo de la pestaña activa: color de acento */
+        border-radius: 0.75rem; /* Bordes redondeados */
+        color: #0A0A1A; /* Color del texto */
+        box-shadow: 0 4px 10px rgba(0, 255, 192, 0.4); /* Sombra */
     }
     .stTabs [data-baseweb="tab-list"] button.st-cq p {
-        color: white; /* Asegura que el texto de la pestaña activa sea blanco. */
+        color: #0A0A1A; /* Asegura que el texto de la pestaña activa sea oscuro */
     }
     /* Espaciado entre las pestañas */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 1rem; /* Espacio entre las pestañas. */
+        gap: 1rem; /* Espacio entre las pestañas */
     }
     /* Estilos para las pestañas no seleccionadas */
     .stTabs [data-baseweb="tab-list"] button {
-        background-color: #0f3460; /* Fondo de las pestañas inactivas. */
-        border-radius: 0.75rem; /* Bordes redondeados. */
-        padding: 0.5rem 1rem; /* Espaciado interno. */
-        color: #e0e0e0; /* Color del texto de las pestañas inactivas. */
+        background-color: #2A2A4A; /* Fondo de las pestañas inactivas */
+        border-radius: 0.75rem; /* Bordes redondeados */
+        padding: 0.5rem 1rem; /* Espaciado interno */
+        color: #F8F8F8; /* Color del texto de las pestañas inactivas */
+        border: 1px solid #1A1A3A; /* Borde sutil */
     }
     /* Estilos para el texto de los widgets en general (ej. etiquetas de number_input) */
     .css-1d391kg {
-        color: #e0e0e0; /* Asegura que las etiquetas de los widgets sean claras. */
+        color: #F8F8F8; /* Asegura que las etiquetas de los widgets sean claras */
+    }
+    /* Estilos para las tablas generadas por Streamlit (st.table) */
+    .stTable > div > div > div > div > div:nth-child(2) > div {
+        background-color: #1A1A3A; /* Fondo de las celdas de la tabla */
+        color: #F8F8F8; /* Color del texto de la tabla */
+        border: 1px solid #00FFC0; /* Borde de las celdas */
+    }
+    .stTable > div > div > div > div > div:nth-child(1) > div {
+        background-color: #00FFC0; /* Fondo del encabezado de la tabla */
+        color: #0A0A1A; /* Color del texto del encabezado */
+        font-weight: bold; /* Negrita para encabezados */
+        border: 1px solid #00FFC0; /* Borde del encabezado */
     }
     </style>
     """,
@@ -436,13 +475,13 @@ def generar_reporte_pdf(data, resultados):
     
     # Definición de estilos personalizados para el PDF para una mejor presentación.
     styles.add(ParagraphStyle(name='TitleStyle', fontSize=24, leading=28, alignment=TA_CENTER,
-                              fontName='Helvetica-Bold', textColor=colors.HexColor('#e94560')))
+                              fontName='Helvetica-Bold', textColor=colors.HexColor('#0A0A1A'))) # Título oscuro para contraste
     styles.add(ParagraphStyle(name='SubtitleStyle', fontSize=16, leading=20, alignment=TA_CENTER,
-                              fontName='Helvetica-Bold', textColor=colors.HexColor('#533483')))
+                              fontName='Helvetica-Bold', textColor=colors.HexColor('#1A1A3A'))) # Subtítulo más oscuro
     styles.add(ParagraphStyle(name='Heading1Style', fontSize=18, leading=22, alignment=TA_LEFT,
-                              fontName='Helvetica-Bold', textColor=colors.HexColor('#0f3460')))
+                              fontName='Helvetica-Bold', textColor=colors.HexColor('#00FFC0'))) # Acento para encabezados
     styles.add(ParagraphStyle(name='Heading2Style', fontSize=14, leading=18, alignment=TA_LEFT,
-                              fontName='Helvetica-Bold', textColor=colors.HexColor('#e94560')))
+                              fontName='Helvetica-Bold', textColor=colors.HexColor('#00E0A0'))) # Acento secundario
     styles.add(ParagraphStyle(name='NormalStyle', fontSize=10, leading=12, alignment=TA_LEFT,
                               fontName='Helvetica', textColor=colors.black))
     styles.add(ParagraphStyle(name='BoldStyle', fontSize=10, leading=12, alignment=TA_LEFT,
@@ -523,14 +562,15 @@ def generar_reporte_pdf(data, resultados):
     
     # Estilo general para las tablas de datos
     table_style = TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#e94560')),
-        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#00FFC0')), # Encabezado de tabla con acento
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.HexColor('#0A0A1A')), # Texto oscuro para encabezado
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-        ('BACKGROUND', (0, 1), (-1, -1), colors.HexColor('#f0f4f8')),
-        ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#cccccc')),
-        ('BOX', (0, 0), (-1, -1), 1, colors.HexColor('#cccccc')),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.HexColor('#2A2A4A')), # Filas de datos con fondo oscuro
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.HexColor('#F8F8F8')), # Texto blanco para datos
+        ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#00E0A0')), # Bordes de tabla con acento secundario
+        ('BOX', (0, 0), (-1, -1), 1, colors.HexColor('#00E0A0')),
         ('LEFTPADDING', (0,0), (-1,-1), 6),
         ('RIGHTPADDING', (0,0), (-1,-1), 6),
         ('TOPPADDING', (0,0), (-1,-1), 6),
@@ -733,7 +773,7 @@ def reiniciar_datos():
 # ===================== BARRA LATERAL (SIDEBAR) DE NAVEGACIÓN Y UTILIDADES =====================
 with st.sidebar:
     # Logo ficticio para dar un toque profesional a la interfaz.
-    st.image("https://placehold.co/150x50/e94560/ffffff?text=FINTECH+LOGO", use_column_width=True) 
+    st.image("https://placehold.co/150x50/00FFC0/0A0A1A?text=FINTECH+LOGO", use_container_width=True) 
     st.title("Menú de Navegación")
     st.markdown("---") # Separador visual.
     
@@ -1050,40 +1090,40 @@ if st.button("🚀 Ejecutar Análisis Financiero", key="run_analysis_button", he
         fig_multiplos.add_trace(go.Bar(
             name='Actual',
             x=m_names, y=m_actual,
-            marker_color='#e94560' # Color de acento
+            marker_color='#00FFC0' # Color de acento
         ))
         fig_multiplos.add_trace(go.Bar(
             name='Proyectado',
             x=m_names, y=m_proyectado,
-            marker_color='#533483' # Color secundario
+            marker_color='#00E0A0' # Color secundario
         ))
         fig_multiplos.add_trace(go.Scatter(
             name='Esperado',
             x=m_names, y=m_esperado,
             mode='markers+lines',
-            marker=dict(size=10, color='#0f3460'), # Color oscuro
-            line=dict(width=2, dash='dot', color='#0f3460')
+            marker=dict(size=10, color='#6A0DAD'), # Morado oscuro
+            line=dict(width=2, dash='dot', color='#6A0DAD')
         ))
         fig_multiplos.add_trace(go.Scatter(
             name='Histórico Año -2',
             x=m_names, y=m_hist_1,
             mode='markers+lines',
-            marker=dict(size=8, color='#8c8c8c'),
-            line=dict(width=1, dash='dash', color='#8c8c8c')
+            marker=dict(size=8, color='#A0A0A0'), # Gris más claro
+            line=dict(width=1, dash='dash', color='#A0A0A0')
         ))
         fig_multiplos.add_trace(go.Scatter(
             name='Histórico Año -1',
             x=m_names, y=m_hist_2,
             mode='markers+lines',
-            marker=dict(size=8, color='#b0b0b0'),
-            line=dict(width=1, dash='dash', color='#b0b0b0')
+            marker=dict(size=8, color='#C0C0C0'), # Gris medio
+            line=dict(width=1, dash='dash', color='#C0C0C0')
         ))
         fig_multiplos.add_trace(go.Scatter(
             name='Histórico Año Actual',
             x=m_names, y=m_hist_3,
             mode='markers+lines',
-            marker=dict(size=8, color='#d0d0d0'),
-            line=dict(width=1, dash='dash', color='#d0d0d0')
+            marker=dict(size=8, color='#E0E0E0'), # Gris casi blanco
+            line=dict(width=1, dash='dash', color='#E0E0E0')
         ))
 
         fig_multiplos.update_layout(
@@ -1091,9 +1131,9 @@ if st.button("🚀 Ejecutar Análisis Financiero", key="run_analysis_button", he
             xaxis_title='Múltiplo',
             yaxis_title='Valor (x)',
             barmode='group',
-            plot_bgcolor='#1a1a2e', # Fondo del gráfico
-            paper_bgcolor='#1a1a2e', # Fondo del papel
-            font_color='#e0e0e0', # Color del texto
+            plot_bgcolor='#0A0A1A', # Fondo del gráfico
+            paper_bgcolor='#0A0A1A', # Fondo del papel
+            font_color='#F8F8F8', # Color del texto
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
         st.plotly_chart(fig_multiplos, use_container_width=True)
@@ -1219,18 +1259,18 @@ if st.button("🚀 Ejecutar Análisis Financiero", key="run_analysis_button", he
             fig_escenarios.add_trace(go.Bar(
                 name='DCF (Crecimiento Perpetuo)',
                 x=escenarios, y=valores_dcf,
-                marker_color='#e94560'
+                marker_color='#00FFC0'
             ))
             fig_escenarios.add_trace(go.Bar(
                 name='Múltiplo Terminal',
                 x=escenarios, y=valores_multiplo_terminal,
-                marker_color='#533483'
+                marker_color='#00E0A0'
             ))
             fig_escenarios.add_trace(go.Scatter(
                 name='Precio Actual',
                 x=escenarios, y=[st.session_state.data_inputs['precio_actual']] * len(escenarios),
                 mode='lines',
-                line=dict(color='#0f3460', dash='dash', width=3),
+                line=dict(color='#6A0DAD', dash='dash', width=3), # Morado oscuro
                 marker=dict(size=10)
             ))
 
@@ -1239,9 +1279,9 @@ if st.button("🚀 Ejecutar Análisis Financiero", key="run_analysis_button", he
                 xaxis_title='Escenario',
                 yaxis_title='Precio por Acción ($)',
                 barmode='group',
-                plot_bgcolor='#1a1a2e',
-                paper_bgcolor='#1a1a2e',
-                font_color='#e0e0e0',
+                plot_bgcolor='#0A0A1A',
+                paper_bgcolor='#0A0A1A',
+                font_color='#F8F8F8',
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
             )
             st.plotly_chart(fig_escenarios, use_container_width=True)
@@ -1321,26 +1361,26 @@ if st.button("🚀 Ejecutar Análisis Financiero", key="run_analysis_button", he
         fig_comparacion.add_trace(go.Bar(
             name='Precio Actual',
             x=['Precio Actual'], y=[st.session_state.data_inputs['precio_actual']],
-            marker_color='#e94560'
+            marker_color='#00FFC0'
         ))
         fig_comparacion.add_trace(go.Bar(
             name='Precio Justo Final',
             x=['Precio Justo Final'], y=[precio_justo_final],
-            marker_color='#533483'
+            marker_color='#00E0A0'
         ))
         if precio_maximo_a_pagar > 0:
             fig_comparacion.add_trace(go.Bar(
                 name=f'Precio Máximo a Pagar (Margen {st.session_state.data_inputs["margen_seguridad_deseado"]:.0f}%)',
                 x=['Precio Máximo a Pagar'], y=[precio_maximo_a_pagar],
-                marker_color='#0f3460'
+                marker_color='#6A0DAD'
             ))
 
         fig_comparacion.update_layout(
             title_text='Comparación de Precios: Actual vs. Estimados',
             yaxis_title='Precio por Acción ($)',
-            plot_bgcolor='#1a1a2e',
-            paper_bgcolor='#1a1a2e',
-            font_color='#e0e0e0',
+            plot_bgcolor='#0A0A1A',
+            paper_bgcolor='#0A0A1A',
+            font_color='#F8F8F8',
             showlegend=True
         )
         st.plotly_chart(fig_comparacion, use_container_width=True)
